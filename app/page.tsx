@@ -1,101 +1,62 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { CategoryGrid } from "@/components/home/CategoryGrid";
+import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { HeroSection } from "@/components/home/HeroSection";
+import { ProductRange } from "@/components/home/ProductRange";
+import { ServiceHighlights } from "@/components/home/ServiceHighlights";
+import { StatsSection } from "@/components/home/StatsSection";
+import { StrategicProjects } from "@/components/home/StrategicProjects";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, homeFaqJsonLd, pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "New Murtaza Asif Traders | Appliances Sales & Services",
+  path: "/",
+});
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([{ name: "Home", path: "/" }]),
+          homeFaqJsonLd,
+        ]}
+      />
+      <HeroSection />
+      <StatsSection />
+      <CategoryGrid />
+      <StrategicProjects />
+      <ProductRange />
+      <FeaturedProducts />
+      <ServiceHighlights />
+      <section className="section-shell pb-20 pt-8">
+        <div className="relative overflow-hidden rounded-lg border border-primary/30 bg-primary/10 p-8 shadow-glow md:p-12">
+          <div className="absolute inset-0 bg-neon-mesh opacity-70" />
+          <div className="relative max-w-3xl">
+            <p className="text-sm font-black uppercase text-primary">Inquiry & Orders</p>
+            <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">Need quotations or project appliance support?</h2>
+            <p className="mt-4 text-lg leading-8 text-textSecondary">
+              Contact New Murtaza Asif Traders for residential appliance requirements, institutional supply,
+              installation, commissioning and maintenance support.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="/contact"
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-6 font-black text-white shadow-glow transition hover:bg-primaryDark"
+              >
+                Order Now
+              </a>
+              <a
+                href="tel:+923333900862"
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/15 px-6 font-black text-white transition hover:border-primary hover:text-primary"
+              >
+                Call 0333 3900862
+              </a>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
 }
