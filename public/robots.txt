@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://new-murtaza-asif-traders.netlify.app
+
+# Sitemaps
+Sitemap: https://new-murtaza-asif-traders.netlify.app/sitemap.xml
