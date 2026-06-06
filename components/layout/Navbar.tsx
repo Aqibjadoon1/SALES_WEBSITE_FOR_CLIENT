@@ -3,11 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu, Search, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCart } from "@/components/cart/CartProvider";
 import { BrandMark } from "@/components/ui/BrandMark";
 import { business, categoryDefinitions } from "@/lib/products";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -31,26 +30,11 @@ function Logo() {
 }
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems, openCart } = useCart();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition duration-300",
-        scrolled
-          ? "border-white/10 bg-background/86 shadow-card backdrop-blur-xl"
-          : "border-transparent bg-background/30 backdrop-blur-md",
-      )}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-primary/55 bg-transparent transition duration-300">
       <nav className="section-shell flex h-[76px] items-center justify-between gap-3 md:h-20" aria-label="Main navigation">
         <Logo />
 
@@ -59,7 +43,7 @@ export function Navbar() {
             <div key={link.href} className="group relative">
               <Link
                 href={link.href}
-                className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-bold text-textSecondary transition hover:bg-white/5 hover:text-white"
+                className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-bold text-accent transition hover:bg-primary/10 hover:text-primary"
               >
                 {link.label}
                 {link.hasMega ? <ChevronDown className="h-4 w-4" /> : null}
@@ -89,7 +73,7 @@ export function Navbar() {
         <div className="hidden items-center gap-2 lg:flex">
           <Link
             href="/products"
-            className="grid h-10 w-10 place-items-center rounded-md border border-white/10 text-white transition hover:border-primary hover:text-primary"
+            className="grid h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent transition hover:border-primary hover:text-primary"
             aria-label="Search products"
           >
             <Search className="h-4 w-4" />
@@ -97,7 +81,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openCart}
-            className="relative grid h-10 w-10 place-items-center rounded-md border border-white/10 text-white transition hover:border-primary hover:text-primary"
+            className="relative grid h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent transition hover:border-primary hover:text-primary"
             aria-label="Open inquiry cart"
           >
             <ShoppingBag className="h-4 w-4" />
@@ -109,7 +93,7 @@ export function Navbar() {
           </button>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-black text-white shadow-glow transition hover:bg-primaryDark"
+            className="inline-flex items-center gap-2 rounded-md border border-primary/55 bg-transparent px-4 py-2 text-sm font-black text-primary transition hover:bg-primary/10"
           >
             Order Now
             <ArrowRight className="h-4 w-4" />
@@ -120,7 +104,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openCart}
-            className="relative hidden h-10 w-10 place-items-center rounded-md border border-white/10 text-white md:grid"
+            className="relative hidden h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent md:grid"
             aria-label="Open inquiry cart"
           >
             <ShoppingBag className="h-4 w-4" />
@@ -133,7 +117,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className="grid h-10 w-10 place-items-center rounded-md border border-white/10 text-white"
+            className="grid h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent"
             aria-label="Toggle mobile navigation"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -144,7 +128,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen ? (
           <motion.div
-            className="border-t border-white/10 bg-background/96 px-4 pb-5 pt-2 backdrop-blur-xl lg:hidden"
+            className="border-t border-primary/45 bg-background/96 px-4 pb-5 pt-2 backdrop-blur-xl lg:hidden"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -155,7 +139,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-md border border-white/10 px-4 py-3 font-bold text-white transition hover:border-primary hover:text-primary"
+                  className="rounded-md border border-primary/30 px-4 py-3 font-bold text-accent transition hover:border-primary hover:text-primary"
                 >
                   {link.label}
                 </Link>
