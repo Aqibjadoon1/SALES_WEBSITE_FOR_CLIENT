@@ -39,7 +39,7 @@ export function StrategicProjects() {
           {projects.map((project, index) => (
             <motion.article
               key={project.title}
-              className="group relative min-h-[430px] overflow-hidden rounded-lg border border-white/10 bg-surface shadow-card transition-shadow duration-300 hover:shadow-[0_30px_90px_rgba(255,30,110,0.34)]"
+              className="media-surface group relative min-h-[430px] overflow-hidden rounded-lg border border-white/10 bg-surface shadow-card transition-shadow duration-300 hover:shadow-[0_30px_90px_rgba(215,25,97,0.28)]"
               initial={{ opacity: 0, y: 26 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

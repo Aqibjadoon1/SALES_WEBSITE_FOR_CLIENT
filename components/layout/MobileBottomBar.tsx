@@ -8,7 +8,7 @@ export function MobileBottomBar() {
   const { openCart, totalItems } = useCart();
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-background/95 p-2 backdrop-blur-xl md:hidden">
+    <div className="fixed inset-x-5 bottom-3 z-40 rounded-lg border border-white/10 bg-background/95 p-1.5 shadow-card backdrop-blur-xl md:hidden">
       <div className="grid grid-cols-3 gap-2">
         <a
           href={business.phoneHref}
@@ -30,7 +30,7 @@ export function MobileBottomBar() {
           className="relative inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-primary text-sm font-black text-white"
         >
           <ShoppingBag className="h-4 w-4" />
-          Cart
+          <span className="hidden min-[430px]:inline">Cart</span>
           {totalItems ? (
             <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-white px-1 text-xs text-primary">
               {totalItems}

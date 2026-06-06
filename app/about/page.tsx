@@ -77,7 +77,7 @@ export default function AboutPage() {
                   className="object-contain p-3 transition duration-700 hover:scale-105"
                   priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/55 via-transparent to-transparent" />
               </div>
             ))}
           </div>

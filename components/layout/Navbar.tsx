@@ -25,7 +25,7 @@ function Logo() {
       className="flex min-w-0 items-center rounded-md transition hover:opacity-90"
       aria-label={`${business.name} home`}
     >
-      <BrandMark className="max-w-[224px] sm:max-w-[300px]" />
+      <BrandMark className="max-w-[196px] sm:max-w-[300px]" />
     </Link>
   );
 }
@@ -120,7 +120,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openCart}
-            className="relative grid h-10 w-10 place-items-center rounded-md border border-white/10 text-white"
+            className="relative hidden h-10 w-10 place-items-center rounded-md border border-white/10 text-white md:grid"
             aria-label="Open inquiry cart"
           >
             <ShoppingBag className="h-4 w-4" />

@@ -8,8 +8,8 @@ type BrandMarkProps = {
 export function BrandMark({ className }: BrandMarkProps) {
   return (
     <div className={cn("flex min-w-0 items-center gap-2.5 text-left sm:gap-3", className)}>
-      <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-gold/80 bg-gradient-to-br from-[#08192f] via-background to-[#180814] shadow-[0_0_28px_rgba(201,168,76,0.34)] sm:h-12 sm:w-12">
-        <span className="absolute inset-1 rounded-full border border-white/15" />
+      <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full border-2 border-gold/80 bg-gradient-to-br from-[#08192f] via-[#102f5c] to-[#3a1323] shadow-[0_0_28px_rgba(201,168,76,0.34)] sm:h-12 sm:w-12">
+        <span className="absolute inset-1 rounded-full border border-gold/30" />
         <span className="relative font-serif text-lg font-black tracking-[-0.12em] text-gold sm:text-xl">
           MA
         </span>
@@ -20,7 +20,7 @@ export function BrandMark({ className }: BrandMarkProps) {
           New
         </span>
         <span className="flex min-w-0 flex-wrap items-baseline gap-x-1 leading-none">
-          <span className="truncate text-[17px] font-black uppercase tracking-[-0.02em] text-white sm:text-[22px] lg:text-2xl">
+          <span className="truncate text-[17px] font-black uppercase tracking-[-0.02em] text-accent sm:text-[22px] lg:text-2xl">
             Murtaza Asif
           </span>
           <span className="font-serif text-sm font-semibold italic text-primary sm:text-base">Traders</span>

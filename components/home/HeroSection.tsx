@@ -37,7 +37,7 @@ export function HeroSection() {
     <section className="relative isolate overflow-hidden pt-20">
       <video
         ref={backgroundVideoRef}
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-[0.72] saturate-125"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-center brightness-105 contrast-110 saturate-125"
         autoPlay
         muted
         loop
@@ -50,22 +50,24 @@ export function HeroSection() {
         <source src="/videos/1.mp4" type="video/mp4" media="(min-width: 768px)" />
         Your browser can display the New Murtaza Asif Traders premium appliance background video.
       </video>
-      <div className="absolute inset-0 -z-10 animate-mesh bg-neon-mesh opacity-30" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/5 via-background/36 to-background/88" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/78 via-background/28 to-background/32" />
+      <div className="absolute inset-0 -z-10 animate-mesh bg-neon-mesh opacity-10" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/0 via-background/12 to-background/42" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background/82 via-background/22 to-transparent" />
 
       <div className="section-shell grid min-h-[calc(100svh-76px)] items-center gap-8 py-10 sm:py-14 md:min-h-[84vh] lg:grid-cols-[1fr_0.92fr] lg:py-20">
-        <div className="drop-shadow-[0_12px_42px_rgba(0,0,0,0.9)]">
-          <div
-            className="inline-flex items-center gap-2 rounded-md border border-primary/35 bg-primary/10 px-3 py-2 text-sm font-black text-white"
-          >
+        <div className="drop-shadow-[0_12px_38px_rgba(255,255,255,0.78)]">
+          <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-primary/35 bg-primary/10 px-3 py-2 text-left text-sm font-black text-accent">
             <ShieldCheck className="h-4 w-4 text-primary" />
             Quality Appliances for Peshawar and Pakistan
           </div>
 
           <h1 className="mt-5 text-balance text-4xl font-black leading-[1.04] text-white sm:text-5xl lg:text-7xl">
             Premium Appliances{" "}
-            <span className="block text-primary">for Homes, Businesses & Institutions</span>
+            <span className="block text-primary">
+              for Homes,
+              <span className="block sm:inline"> Businesses</span>
+              <span className="block sm:inline"> & Institutions</span>
+            </span>
           </h1>
 
           <p
@@ -122,7 +124,7 @@ export function HeroSection() {
 
         <div className="relative hidden min-h-[520px] md:block">
           <div className="absolute inset-0 rounded-lg border border-primary/20 bg-black/20 shadow-glow-violet backdrop-blur-sm" />
-          <div className="absolute left-0 top-7 h-[62%] w-[78%] overflow-hidden rounded-lg border border-primary/35 bg-black shadow-[0_30px_90px_rgba(255,30,110,0.28)] transition duration-300 hover:shadow-[0_38px_110px_rgba(255,30,110,0.42)]">
+          <div className="media-surface absolute left-0 top-7 h-[62%] w-[78%] overflow-hidden rounded-lg border border-primary/35 bg-black shadow-[0_30px_90px_rgba(215,25,97,0.28)] transition duration-300 hover:shadow-[0_38px_110px_rgba(215,25,97,0.38)]">
             <video
               ref={salesVideoRef}
               className="h-full w-full object-cover opacity-95"
@@ -146,7 +148,7 @@ export function HeroSection() {
           {featuredProducts.slice(0, 3).map((product, index) => (
             <motion.div
               key={product.id}
-              className="absolute overflow-hidden rounded-lg border border-white/10 bg-surface shadow-card transition-shadow duration-300 hover:shadow-[0_28px_80px_rgba(255,30,110,0.36)]"
+              className="media-surface absolute overflow-hidden rounded-lg border border-white/10 bg-surface shadow-card transition-shadow duration-300 hover:shadow-[0_28px_80px_rgba(215,25,97,0.28)]"
               style={{
                 width: index === 0 ? "38%" : "33%",
                 height: index === 0 ? "36%" : "32%",

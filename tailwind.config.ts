@@ -9,16 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0F0F14",
-        surface: "#1E1E24",
-        surfaceHigh: "#2A2A33",
-        primary: "#FF1E6E",
-        primaryDark: "#B1004B",
-        accent: "#6A00FF",
-        textPrimary: "#FFFFFF",
-        textSecondary: "#A0A0B0",
-        border: "#2A2A33",
-        borderGlow: "rgba(255,30,110,0.4)",
+        background: "#F8F6EF",
+        surface: "#FFFFFF",
+        surfaceHigh: "#F0EDE4",
+        primary: "#D71961",
+        primaryDark: "#A70F45",
+        accent: "#0B2B57",
+        textPrimary: "#101827",
+        textSecondary: "#606A7B",
+        border: "#DED8CC",
+        borderGlow: "rgba(215,25,97,0.34)",
         gold: "#C9A84C",
       },
       fontFamily: {
@@ -26,15 +26,15 @@ const config: Config = {
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 34px rgba(255, 30, 110, 0.28)",
-        "glow-violet": "0 0 38px rgba(106, 0, 255, 0.28)",
-        card: "0 22px 60px rgba(0, 0, 0, 0.35)",
+        glow: "0 16px 34px rgba(215, 25, 97, 0.22)",
+        "glow-violet": "0 18px 42px rgba(11, 43, 87, 0.16)",
+        card: "0 24px 64px rgba(16, 24, 39, 0.12)",
       },
       backgroundImage: {
         "neon-mesh":
-          "radial-gradient(circle at 20% 18%, rgba(255,30,110,0.18), transparent 32%), radial-gradient(circle at 78% 16%, rgba(106,0,255,0.2), transparent 28%), linear-gradient(135deg, rgba(255,30,110,0.08), transparent 42%)",
+          "radial-gradient(circle at 20% 18%, rgba(215,25,97,0.14), transparent 32%), radial-gradient(circle at 78% 16%, rgba(201,168,76,0.18), transparent 28%), linear-gradient(135deg, rgba(11,43,87,0.08), transparent 42%)",
         noise:
-          "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+          "linear-gradient(rgba(11,43,87,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11,43,87,0.045) 1px, transparent 1px)",
       },
       keyframes: {
         float: {

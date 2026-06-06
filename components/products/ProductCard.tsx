@@ -20,7 +20,7 @@ export function ProductCard({ product, priority = false, compact = false }: Prod
   return (
     <motion.article
       className={cn(
-        "glass-card neon-border group overflow-hidden p-4 transition-shadow duration-300 hover:shadow-[0_30px_90px_rgba(255,30,110,0.34)]",
+        "glass-card neon-border group overflow-hidden p-4 transition-shadow duration-300 hover:shadow-[0_30px_90px_rgba(215,25,97,0.26)]",
         compact && "p-3",
       )}
       whileHover={{ y: -8, scale: 1.018 }}
@@ -36,7 +36,7 @@ export function ProductCard({ product, priority = false, compact = false }: Prod
             sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 360px"
             className="object-contain p-3 transition duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/65 via-transparent to-transparent" />
           <span className="absolute left-3 top-3 rounded-md bg-primary px-3 py-1 text-xs font-black uppercase text-white shadow-glow">
             {product.badge}
           </span>
