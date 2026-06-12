@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductDetailClient } from "@/components/products/ProductDetailClient";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getProduct } from "@/lib/products";
+import { getProduct, products } from "@/lib/products";
 import { breadcrumbJsonLd, pageMetadata, productJsonLd } from "@/lib/seo";
 
 type ProductPageProps = {
@@ -10,6 +10,10 @@ type ProductPageProps = {
     id: string;
   };
 };
+
+export function generateStaticParams() {
+  return products.map((product) => ({ id: product.id }));
+}
 
 export function generateMetadata({ params }: ProductPageProps): Metadata {
   const product = getProduct(params.id);
