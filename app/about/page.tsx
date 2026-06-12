@@ -3,27 +3,16 @@ import Image from "next/image";
 import { Award, BadgeCheck, Users } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SectionReveal } from "@/components/ui/SectionReveal";
-import { business } from "@/lib/products";
+import { business, products } from "@/lib/products";
 import { breadcrumbJsonLd, homeFaqJsonLd, pageMetadata } from "@/lib/seo";
 
-const aboutImages = [
-  {
-    src: "/images/products/cleaned/pdf-refrigerator-dawlance-dw-900-gd-dfd-double-french-series-refrigerator.png",
-    alt: "Dawlance double French refrigerator supplied by New Murtaza Asif Traders",
-  },
-  {
-    src: "/images/products/cleaned/pdf-air-conditioner-dawlance-glamour-inverter-floor-standing-ac.png",
-    alt: "Dawlance floor standing air conditioner supplied by New Murtaza Asif Traders",
-  },
-  {
-    src: "/images/products/cleaned/pdf-dishwasher-dawlance-ddw-1480-inv-dishwasher.png",
-    alt: "Dawlance inverter dishwasher supplied for commercial clients",
-  },
-  {
-    src: "/images/products/cleaned/pdf-water-dispenser-dawlance-wd-1051-gd-water-dispenser.png",
-    alt: "Dawlance glass door water dispenser appliance solution",
-  },
-];
+const aboutImages = ["refrigerator", "air-conditioner", "washing-machine", "water-dispenser"]
+  .map((categorySlug) => products.find((product) => product.categorySlug === categorySlug))
+  .filter((product): product is NonNullable<typeof product> => Boolean(product))
+  .map((product) => ({
+    src: product.image,
+    alt: `${product.name} from New Murtaza Asif Traders`,
+  }));
 
 export const metadata: Metadata = pageMetadata({
   title: "About",

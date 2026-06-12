@@ -34,7 +34,7 @@ export function Navbar() {
   const { totalItems, openCart } = useCart();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-primary/55 bg-transparent transition duration-300">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-primary/20 bg-[linear-gradient(90deg,rgba(255,255,255,0.96)_0%,rgba(243,245,247,0.94)_50%,rgba(196,208,216,0.92)_100%)] shadow-[0_18px_50px_rgba(32,50,62,0.12)] backdrop-blur-sm transition duration-300">
       <nav className="section-shell flex h-[76px] items-center justify-between gap-3 md:h-20" aria-label="Main navigation">
         <Logo />
 
@@ -43,7 +43,7 @@ export function Navbar() {
             <div key={link.href} className="group relative">
               <Link
                 href={link.href}
-                className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-bold text-accent transition hover:bg-primary/10 hover:text-primary"
+                className="inline-flex items-center gap-1 px-3 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-accent transition hover:bg-primary/10 hover:text-primary"
               >
                 {link.label}
                 {link.hasMega ? <ChevronDown className="h-4 w-4" /> : null}
@@ -73,7 +73,7 @@ export function Navbar() {
         <div className="hidden items-center gap-2 lg:flex">
           <Link
             href="/products"
-            className="grid h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent transition hover:border-primary hover:text-primary"
+            className="grid h-10 w-10 place-items-center border border-primary/35 bg-primary/5 text-accent transition hover:border-primary hover:bg-primary/10 hover:text-primary"
             aria-label="Search products"
           >
             <Search className="h-4 w-4" />
@@ -81,7 +81,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openCart}
-            className="relative grid h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent transition hover:border-primary hover:text-primary"
+            className="relative grid h-10 w-10 place-items-center border border-primary/35 bg-primary/5 text-accent transition hover:border-primary hover:bg-primary/10 hover:text-primary"
             aria-label="Open inquiry cart"
           >
             <ShoppingBag className="h-4 w-4" />
@@ -93,7 +93,7 @@ export function Navbar() {
           </button>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-md border border-primary/55 bg-transparent px-4 py-2 text-sm font-black text-primary transition hover:bg-primary/10"
+            className="inline-flex items-center gap-2 bg-primary px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-white shadow-glow transition hover:bg-primaryDark"
           >
             Order Now
             <ArrowRight className="h-4 w-4" />
@@ -104,7 +104,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openCart}
-            className="relative hidden h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent md:grid"
+            className="relative hidden h-10 w-10 place-items-center border border-primary/35 bg-primary/5 text-accent md:grid"
             aria-label="Open inquiry cart"
           >
             <ShoppingBag className="h-4 w-4" />
@@ -117,7 +117,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className="grid h-10 w-10 place-items-center rounded-md border border-primary/45 text-accent"
+            className="grid h-10 w-10 place-items-center border border-primary/35 bg-primary/5 text-accent"
             aria-label="Toggle mobile navigation"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

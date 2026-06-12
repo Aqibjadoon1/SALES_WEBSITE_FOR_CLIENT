@@ -5,7 +5,14 @@ import { Search, SlidersHorizontal } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { FilterSidebar } from "@/components/products/FilterSidebar";
 import { ProductGrid } from "@/components/products/ProductGrid";
-import type { Product } from "@/lib/products";
+import {
+  filterProducts,
+  getCategoriesWithProducts,
+  getFilterOptions,
+  toggleFilterValue,
+  type ProductSort,
+} from "@/lib/product-filtering";
+import { categoryDefinitions, type Product } from "@/lib/products";
 
 type ProductCatalogProps = {
   initialProducts: Product[];
@@ -14,75 +21,84 @@ type ProductCatalogProps = {
 
 const pageSize = 12;
 
-function toggleValue(values: string[], value: string) {
-  return values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
-}
-
 export function ProductCatalog({ initialProducts, initialCategory }: ProductCatalogProps) {
   const [query, setQuery] = useState("");
-  const [sort, setSort] = useState("popular");
+  const [sort, setSort] = useState<ProductSort>("popular");
   const [selectedCategories, setSelectedCategories] = useState<string[]>(initialCategory ? [initialCategory] : []);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [page, setPage] = useState(1);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   useEffect(() => {
     setPage(1);
-  }, [query, sort, selectedCategories, selectedSubcategories, selectedBrands, selectedFeatures]);
+  }, [query, sort, selectedCategories, selectedSubcategories, selectedBrands, selectedFeatures, minPrice, maxPrice]);
 
-  const availableSubcategories = useMemo(
-    () => Array.from(new Set(initialProducts.map((product) => product.subcategory))).sort(),
+  const availableCategories = useMemo(
+    () => getCategoriesWithProducts(initialProducts, categoryDefinitions),
     [initialProducts],
   );
 
-  const filteredProducts = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
+  const availableFilterOptions = useMemo(
+    () => getFilterOptions(initialProducts, selectedCategories),
+    [initialProducts, selectedCategories],
+  );
 
-    return initialProducts
-      .filter((product) => {
-        const matchesQuery =
-          !normalizedQuery ||
-          [product.name, product.description, product.brand, product.category, product.subcategory, ...product.features]
-            .join(" ")
-            .toLowerCase()
-            .includes(normalizedQuery);
-        const matchesCategory =
-          !selectedCategories.length || selectedCategories.includes(product.categorySlug);
-        const matchesSubcategory =
-          !selectedSubcategories.length || selectedSubcategories.includes(product.subcategory);
-        const matchesBrand = !selectedBrands.length || selectedBrands.includes(product.brand);
-        const matchesFeature =
-          !selectedFeatures.length || selectedFeatures.every((feature) => product.features.includes(feature));
-
-        return matchesQuery && matchesCategory && matchesSubcategory && matchesBrand && matchesFeature;
-      })
-      .sort((a, b) => {
-        if (sort === "newest") return b.id.localeCompare(a.id);
-        return Number(Boolean(b.popular)) - Number(Boolean(a.popular));
-      });
-  }, [initialProducts, query, selectedBrands, selectedCategories, selectedFeatures, selectedSubcategories, sort]);
+  const filteredProducts = useMemo(
+    () =>
+      filterProducts(initialProducts, {
+        query,
+        sort,
+        selectedCategories,
+        selectedSubcategories,
+        selectedBrands,
+        selectedFeatures,
+        minPrice: minPrice ? Number(minPrice) : null,
+        maxPrice: maxPrice ? Number(maxPrice) : null,
+      }),
+    [initialProducts, maxPrice, minPrice, query, selectedBrands, selectedCategories, selectedFeatures, selectedSubcategories, sort],
+  );
 
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / pageSize));
   const visibleProducts = filteredProducts.slice((page - 1) * pageSize, page * pageSize);
 
   const filterProps = {
+    availableCategories,
     selectedCategories,
     selectedSubcategories,
-    availableSubcategories,
+    availableSubcategories: availableFilterOptions.subcategories,
+    availableBrands: availableFilterOptions.brands,
+    availableFeatures: availableFilterOptions.features,
+    priceRange:
+      availableFilterOptions.priceRange.min === Number.POSITIVE_INFINITY
+        ? null
+        : availableFilterOptions.priceRange,
+    minPrice,
+    maxPrice,
     selectedBrands,
     selectedFeatures,
-    onCategoryChange: (slug: string) => setSelectedCategories((values) => toggleValue(values, slug)),
+    onCategoryChange: (slug: string) => {
+      setSelectedCategories((values) => toggleFilterValue(values, slug));
+      setSelectedSubcategories([]);
+      setSelectedBrands([]);
+      setSelectedFeatures([]);
+    },
     onSubcategoryChange: (subcategory: string) =>
-      setSelectedSubcategories((values) => toggleValue(values, subcategory)),
-    onBrandChange: (brand: string) => setSelectedBrands((values) => toggleValue(values, brand)),
-    onFeatureChange: (feature: string) => setSelectedFeatures((values) => toggleValue(values, feature)),
+      setSelectedSubcategories((values) => toggleFilterValue(values, subcategory)),
+    onBrandChange: (brand: string) => setSelectedBrands((values) => toggleFilterValue(values, brand)),
+    onFeatureChange: (feature: string) => setSelectedFeatures((values) => toggleFilterValue(values, feature)),
+    onMinPriceChange: setMinPrice,
+    onMaxPriceChange: setMaxPrice,
     onClear: () => {
       setSelectedCategories(initialCategory ? [initialCategory] : []);
       setSelectedSubcategories([]);
       setSelectedBrands([]);
       setSelectedFeatures([]);
+      setMinPrice("");
+      setMaxPrice("");
       setQuery("");
       setSort("popular");
     },
@@ -108,12 +124,14 @@ export function ProductCatalog({ initialProducts, initialCategory }: ProductCata
 
           <select
             value={sort}
-            onChange={(event) => setSort(event.target.value)}
+            onChange={(event) => setSort(event.target.value as ProductSort)}
             className="min-h-12 rounded-md border border-white/10 bg-black/30 px-4 font-bold text-white transition focus:border-primary"
             aria-label="Sort products"
           >
             <option value="popular">Popular</option>
             <option value="newest">Newest</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
           </select>
 
           <button
@@ -128,8 +146,9 @@ export function ProductCatalog({ initialProducts, initialCategory }: ProductCata
 
         <div className="mb-5 flex items-center justify-between gap-3 text-sm text-textSecondary">
           <p>
-            Showing <span className="font-black text-white">{visibleProducts.length}</span> of{" "}
+            Showing <span className="font-black text-white">{visibleProducts.length}</span> out of{" "}
             <span className="font-black text-white">{filteredProducts.length}</span> products
+            <span className="text-textSecondary"> from {initialProducts.length}</span>
           </p>
           <p className="hidden md:block">Quote-based catalog with installation and maintenance support.</p>
         </div>

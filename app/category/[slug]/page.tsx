@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductCatalog } from "@/components/products/ProductCatalog";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { categoryDefinitions, getCategory, getProductsByCategory } from "@/lib/products";
+import { categoryDefinitions, getCategory, products } from "@/lib/products";
 import { breadcrumbJsonLd, categoryKeywords, pageMetadata } from "@/lib/seo";
 
 type CategoryPageProps = {
@@ -35,8 +35,6 @@ export default function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const categoryProducts = getProductsByCategory(category.slug);
-
   return (
     <main className="section-shell pb-20 pt-32">
       <JsonLd
@@ -51,7 +49,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <h1 className="mt-2 text-4xl font-black text-white md:text-5xl">{category.name}</h1>
         <p className="mt-4 text-lg leading-8 text-textSecondary">{category.description}</p>
       </header>
-      <ProductCatalog initialProducts={categoryProducts} initialCategory={category.slug} />
+      <ProductCatalog initialProducts={products} initialCategory={category.slug} />
     </main>
   );
 }

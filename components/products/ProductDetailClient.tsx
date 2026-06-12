@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import { useCart } from "@/components/cart/CartProvider";
 import { ProductCard } from "@/components/products/ProductCard";
 import type { Product } from "@/lib/products";
-import { business, getRelatedProducts } from "@/lib/products";
+import { business, formatProductPrice, getRelatedProducts, hasSalePrice } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 type ProductDetailClientProps = {
@@ -88,11 +88,24 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           </span>
           <h1 className="mt-5 break-words text-3xl font-black text-white md:text-5xl">{product.name}</h1>
           <p className="mt-4 text-lg leading-8 text-textSecondary">{product.description}</p>
+          <div className="mt-5 rounded-md border border-primary/30 bg-primary/10 p-4">
+            <p className="text-sm font-black uppercase text-primary">New Murtaza Asif Traders Price</p>
+            <div className="mt-1 flex flex-wrap items-baseline gap-3">
+              <p className="text-3xl font-black text-white">{formatProductPrice(product)}</p>
+              {hasSalePrice(product) ? (
+                <p className="text-lg font-bold text-textSecondary line-through">
+                  Rs. {product.regularPrice?.toLocaleString("en-US")}
+                </p>
+              ) : null}
+            </div>
+            <p className="mt-2 text-sm font-semibold text-textSecondary">{product.stockStatus ?? "Check availability"}</p>
+          </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <button
               type="button"
               onClick={() => addItem(product)}
+              aria-label={`Add ${product.name} to inquiry cart`}
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-primary px-5 font-black text-white shadow-glow transition hover:bg-primaryDark"
             >
               <ShoppingBag className="h-4 w-4" />

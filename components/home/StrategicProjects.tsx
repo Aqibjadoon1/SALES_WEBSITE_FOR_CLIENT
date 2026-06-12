@@ -4,27 +4,39 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { SectionReveal } from "@/components/ui/SectionReveal";
+import { products } from "@/lib/products";
+
+type Project = {
+  title: string;
+  image: string;
+  copy: string;
+  checks: string[];
+};
+
+const projectProducts = ["air-conditioner", "kitchen-appliances", "water-dispenser"]
+  .map((categorySlug) => products.find((product) => product.categorySlug === categorySlug))
+  .filter((product): product is NonNullable<typeof product> => Boolean(product));
 
 const projects = [
   {
     title: "Institutional Cooling Supply",
-    image: "/images/products/cleaned/pdf-air-conditioner-dawlance-glamour-inverter-floor-standing-ac.png",
+    image: projectProducts[0]?.image,
     copy: "Floor-standing and split cooling solutions supplied for large rooms, offices and institutional facilities.",
     checks: ["Bulk procurement and delivery", "Installation planning", "After-sales service coordination"],
   },
   {
     title: "Commercial Kitchen Support",
-    image: "/images/products/cleaned/pdf-dishwasher-dawlance-ddw-1480-inv-dishwasher.png",
+    image: projectProducts[1]?.image,
     copy: "Dishwasher and cooking-appliance supply for staff kitchens, mess halls and commercial teams.",
     checks: ["Model selection assistance", "Field commissioning support", "Commercial-grade appliance planning"],
   },
   {
     title: "Unit Support Nationwide",
-    image: "/images/products/cleaned/pdf-water-dispenser-dawlance-wd-1051-gd-water-dispenser.png",
+    image: projectProducts[2]?.image,
     copy: "Coordinated supply of water dispensers, refrigerators and daily-use appliances for office and field units.",
     checks: ["Nationwide delivery coordination", "After-sales maintenance", "Reliable procurement documentation"],
   },
-];
+].filter((project): project is Project => Boolean(project.image));
 
 export function StrategicProjects() {
   return (

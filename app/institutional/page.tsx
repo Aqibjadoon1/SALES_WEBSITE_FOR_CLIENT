@@ -9,8 +9,8 @@ export const metadata: Metadata = pageMetadata({
   title: "Institutional Supply",
   path: "/institutional",
   description:
-    "Institutional appliance supply in Pakistan for Army mess appliances, Dawlance cooling, kitchen appliances, commissioning, delivery and maintenance support.",
-  keywords: ["institutional appliance supply Pakistan", "Army mess appliances supplier", "Dawlance commercial appliances"],
+    "Institutional appliance supply in Pakistan for Army mess appliances, New Murtaza Asif Traders catalog products, commissioning, delivery and maintenance support.",
+  keywords: ["institutional appliance supply Pakistan", "Army mess appliances supplier", "New Murtaza Asif Traders appliances"],
 });
 
 const capabilities = [

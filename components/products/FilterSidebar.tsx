@@ -1,32 +1,48 @@
 "use client";
 
 import { SlidersHorizontal, X } from "lucide-react";
-import { brands, categoryDefinitions, featureFilters } from "@/lib/products";
+import type { Category } from "@/lib/products";
 
 type FilterSidebarProps = {
+  availableCategories: Category[];
   selectedCategories: string[];
   selectedSubcategories: string[];
   availableSubcategories: string[];
+  availableBrands: string[];
   selectedBrands: string[];
+  availableFeatures: string[];
   selectedFeatures: string[];
+  priceRange: { min: number; max: number } | null;
+  minPrice: string;
+  maxPrice: string;
   onCategoryChange: (slug: string) => void;
   onSubcategoryChange: (subcategory: string) => void;
   onBrandChange: (brand: string) => void;
   onFeatureChange: (feature: string) => void;
+  onMinPriceChange: (value: string) => void;
+  onMaxPriceChange: (value: string) => void;
   onClear: () => void;
   onClose?: () => void;
 };
 
 export function FilterSidebar({
+  availableCategories,
   selectedCategories,
   selectedSubcategories,
   availableSubcategories,
+  availableBrands,
   selectedBrands,
+  availableFeatures,
   selectedFeatures,
+  priceRange,
+  minPrice,
+  maxPrice,
   onCategoryChange,
   onSubcategoryChange,
   onBrandChange,
   onFeatureChange,
+  onMinPriceChange,
+  onMaxPriceChange,
   onClear,
   onClose,
 }: FilterSidebarProps) {
@@ -53,7 +69,7 @@ export function FilterSidebar({
         <div>
           <h3 className="font-black text-white">Category</h3>
           <div className="mt-3 space-y-2">
-            {categoryDefinitions.map((category) => (
+            {availableCategories.map((category) => (
               <label key={category.slug} className="flex cursor-pointer items-center gap-3 text-sm text-textSecondary">
                 <input
                   type="checkbox"
@@ -87,7 +103,7 @@ export function FilterSidebar({
         <div>
           <h3 className="font-black text-white">Brand</h3>
           <div className="mt-3 grid grid-cols-2 gap-2 lg:grid-cols-1">
-            {brands.map((brand) => (
+            {availableBrands.map((brand) => (
               <label key={brand} className="flex cursor-pointer items-center gap-3 text-sm text-textSecondary">
                 <input
                   type="checkbox"
@@ -102,9 +118,42 @@ export function FilterSidebar({
         </div>
 
         <div>
+          <h3 className="font-black text-white">Price</h3>
+          <p className="mt-1 text-xs font-semibold text-textSecondary">
+            {priceRange
+              ? `Range Rs. ${priceRange.min.toLocaleString("en-US")} - Rs. ${priceRange.max.toLocaleString("en-US")}`
+              : "No prices available"}
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <label className="text-xs font-bold text-textSecondary">
+              Min
+              <input
+                type="number"
+                min={0}
+                value={minPrice}
+                onChange={(event) => onMinPriceChange(event.target.value)}
+                placeholder="0"
+                className="mt-1 min-h-10 w-full rounded-md border border-white/10 bg-black/30 px-3 text-sm font-bold text-white placeholder:text-textSecondary focus:border-primary"
+              />
+            </label>
+            <label className="text-xs font-bold text-textSecondary">
+              Max
+              <input
+                type="number"
+                min={0}
+                value={maxPrice}
+                onChange={(event) => onMaxPriceChange(event.target.value)}
+                placeholder={priceRange?.max ? String(priceRange.max) : "0"}
+                className="mt-1 min-h-10 w-full rounded-md border border-white/10 bg-black/30 px-3 text-sm font-bold text-white placeholder:text-textSecondary focus:border-primary"
+              />
+            </label>
+          </div>
+        </div>
+
+        <div>
           <h3 className="font-black text-white">Features</h3>
           <div className="mt-3 space-y-2">
-            {featureFilters.map((feature) => (
+            {availableFeatures.map((feature) => (
               <label key={feature} className="flex cursor-pointer items-center gap-3 text-sm text-textSecondary">
                 <input
                   type="checkbox"

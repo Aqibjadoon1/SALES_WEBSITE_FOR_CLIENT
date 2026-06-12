@@ -9,32 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#F8F6EF",
+        background: "#EEF2F5",
         surface: "#FFFFFF",
-        surfaceHigh: "#F0EDE4",
-        primary: "#D71961",
-        primaryDark: "#A70F45",
-        accent: "#0B2B57",
-        textPrimary: "#101827",
-        textSecondary: "#606A7B",
-        border: "#DED8CC",
-        borderGlow: "rgba(215,25,97,0.34)",
-        gold: "#C9A84C",
+        surfaceHigh: "#DDE5EA",
+        primary: "#407F9D",
+        primaryDark: "#255D78",
+        accent: "#111C25",
+        textPrimary: "#111C25",
+        textSecondary: "#5D6D78",
+        border: "#C8D2D9",
+        borderGlow: "rgba(64,127,157,0.28)",
+        gold: "#7CA7BB",
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "var(--font-geist-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        glow: "0 16px 34px rgba(215, 25, 97, 0.22)",
-        "glow-violet": "0 18px 42px rgba(11, 43, 87, 0.16)",
-        card: "0 24px 64px rgba(16, 24, 39, 0.12)",
+        glow: "0 18px 44px rgba(64, 127, 157, 0.18)",
+        "glow-violet": "0 20px 48px rgba(77, 104, 119, 0.16)",
+        card: "0 26px 70px rgba(32, 50, 62, 0.14)",
       },
       backgroundImage: {
         "neon-mesh":
-          "radial-gradient(circle at 20% 18%, rgba(215,25,97,0.14), transparent 32%), radial-gradient(circle at 78% 16%, rgba(201,168,76,0.18), transparent 28%), linear-gradient(135deg, rgba(11,43,87,0.08), transparent 42%)",
+          "radial-gradient(circle at 20% 18%, rgba(255,255,255,0.72), transparent 32%), radial-gradient(circle at 78% 16%, rgba(124,167,187,0.22), transparent 28%), linear-gradient(90deg, rgba(255,255,255,0.72) 0%, rgba(243,245,247,0.36) 50%, rgba(196,208,216,0.18) 100%)",
         noise:
-          "linear-gradient(rgba(11,43,87,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11,43,87,0.045) 1px, transparent 1px)",
+          "linear-gradient(rgba(37,93,120,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(37,93,120,0.045) 1px, transparent 1px)",
       },
       keyframes: {
         float: {

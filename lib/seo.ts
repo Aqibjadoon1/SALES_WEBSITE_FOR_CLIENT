@@ -7,19 +7,19 @@ const defaultDescription =
 
 const defaultKeywords = [
   "home appliances Peshawar",
-  "Dawlance refrigerator Peshawar",
-  "Dawlance air conditioner Pakistan",
-  "Dawlance dishwasher Peshawar",
-  "Dawlance water dispenser Pakistan",
-  "Hamza Store appliances Pakistan",
-  "Hamza electronics products Pakistan",
+  "New Murtaza Asif Traders products Pakistan",
+  "air conditioner Pakistan",
+  "refrigerator Pakistan",
+  "washing machine Pakistan",
+  "LED TV Pakistan",
+  "water dispenser Pakistan",
   "small appliances Peshawar",
   "institutional appliance supply Pakistan",
   "Army mess appliances supplier",
   "New Murtaza Asif Traders",
 ];
 
-export const defaultShareImage = "/images/products/cleaned/pdf-refrigerator-dawlance-dw-900-gd-dfd-double-french-series-refrigerator.png";
+export const defaultShareImage = "/images/products/umar/haier-bed-room-refrigerator-hr-136bss-black-36984-1.webp";
 
 export function pageMetadata({
   title,
@@ -138,6 +138,15 @@ export function productJsonLd(product: Product) {
       name: product.brand,
     },
     category: product.category,
+    offers: product.price
+      ? {
+          "@type": "Offer",
+          priceCurrency: product.currency ?? "PKR",
+          price: product.price,
+          availability: product.stockStatus === "In stock" ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+          url: `${business.siteUrl}/products/${product.id}`,
+        }
+      : undefined,
   };
 }
 

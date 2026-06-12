@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Product Catalog",
   path: "/products",
   description:
-    "Browse the complete New Murtaza Asif Traders appliance catalog with Dawlance, Hamza Store and original product ranges in Peshawar.",
+    "Browse real New Murtaza Asif Traders appliances through New Murtaza Asif Traders with product prices, images and inquiry support in Peshawar.",
 });
 
 export default function ProductsPage() {
@@ -24,7 +24,7 @@ export default function ProductsPage() {
         <p className="text-sm font-black uppercase text-primary">Full Product Catalog</p>
         <h1 className="mt-2 text-4xl font-black text-white md:text-5xl">Complete appliance product catalog</h1>
         <p className="mt-4 text-lg leading-8 text-textSecondary">
-          Filter Dawlance, Hamza Store and original product ranges by category, subcategory, brand and feature.
+          Filter New Murtaza Asif Traders products by category, subcategory, brand and feature.
         </p>
       </header>
       <ProductCatalog initialProducts={products} />

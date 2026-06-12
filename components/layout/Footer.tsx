@@ -6,8 +6,10 @@ import { business, categoryDefinitions } from "@/lib/products";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black/30 pb-24 pt-14 md:pb-8">
-      <div className="section-shell grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
+    <footer className="relative overflow-hidden border-t border-primary/20 bg-[linear-gradient(90deg,#fafbfc_0%,#f3f5f7_50%,#c4d0d8_100%)] pb-24 pt-14 md:pb-8">
+      <div className="absolute inset-0 bg-neon-mesh opacity-45" />
+      <div className="absolute inset-0 bg-noise opacity-20" />
+      <div className="section-shell relative grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
             <BrandMark className="max-w-[310px]" />
@@ -87,7 +89,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="section-shell mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-textSecondary md:flex-row md:items-center md:justify-between">
+      <div className="section-shell relative mt-10 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-textSecondary md:flex-row md:items-center md:justify-between">
         <p>&copy; 2026 {business.name}. All rights reserved.</p>
         <p>Premium appliances, institutional supply and after-sales support.</p>
       </div>

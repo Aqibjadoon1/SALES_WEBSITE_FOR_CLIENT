@@ -7,10 +7,12 @@ import { Minus, Plus, Send, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import { InquiryModal } from "@/components/cart/InquiryModal";
 import { useCart } from "@/components/cart/CartProvider";
+import { formatProductPrice } from "@/lib/products";
 
 export function CartDrawer() {
   const { items, isCartOpen, closeCart, removeItem, updateQuantity, clearCart } = useCart();
   const [isInquiryOpen, setInquiryOpen] = useState(false);
+  const estimatedTotal = items.reduce((total, item) => total + (item.product.price ?? 0) * item.quantity, 0);
 
   return (
     <>
@@ -67,6 +69,7 @@ export function CartDrawer() {
                         >
                           {item.product.name}
                         </Link>
+                        <p className="mt-1 text-sm font-black text-primary">{formatProductPrice(item.product)}</p>
                         <div className="mt-3 flex items-center justify-between gap-3">
                           <div className="flex items-center rounded-md border border-white/10">
                             <button
@@ -117,6 +120,14 @@ export function CartDrawer() {
               </div>
 
               <div className="border-t border-white/10 p-5">
+                {items.length ? (
+                  <div className="mb-4 flex items-center justify-between rounded-md border border-primary/25 bg-primary/10 px-4 py-3">
+                    <span className="text-sm font-black uppercase text-primary">Estimated Total</span>
+                    <span className="text-lg font-black text-white">
+                      Rs. {estimatedTotal.toLocaleString("en-US")}
+                    </span>
+                  </div>
+                ) : null}
                 <button
                   type="button"
                   onClick={() => setInquiryOpen(true)}
